@@ -1,3 +1,6 @@
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 syntax enable                       " syntax highlighting
 colorscheme kersk                   " sets a vim color theme
@@ -225,6 +228,7 @@ nnoremap <bar> :Ack<space>
 nnoremap <leader><leader> :FufLine<CR>
 nnoremap <leader>[ :FufDir<CR>
 nnoremap <leader>] :CommandT<CR>
+nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
 
 function! GetBufferList()
