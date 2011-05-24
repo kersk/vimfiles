@@ -22,3 +22,6 @@
 	path = bundle/distinguished
 	url = https://github.com/Lokaltog/vim-distinguished.git
 	igonore = dirty
+[submodule "bundle/indent-guides"]
+	path = bundle/indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
