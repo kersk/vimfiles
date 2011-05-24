@@ -1,18 +1,24 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
+	igonore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+	igonore = dirty
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
+	igonore = dirty
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/sjl/syntastic.git
+	igonore = dirty
 [submodule "bundle/extradite"]
 	path = bundle/extradite
 	url = https://github.com/vim-scripts/extradite.vim.git
+	igonore = dirty
 [submodule "bundle/distinguished"]
 	path = bundle/distinguished
 	url = https://github.com/Lokaltog/vim-distinguished.git
+	igonore = dirty
