@@ -142,8 +142,12 @@ set formatoptions-=ro
 " doxygen syntax hilighting
 "let g:load_doxygen_syntax=1
 
+"let g:mapleader = ","
+
 " Command-T plugin
 let g:CommandTMaxHeight=15
+
+let g:EasyMotion_leader_key = ','
 
 " LustyExplorer
 " let g:LustyExplorerSuppressRubyWarning = 1
@@ -263,7 +267,6 @@ nmap <silent> <leader>' :call ToggleList("Quickfix List", 'c')<CR>
 
 " bind both ; and : to EX 
 map ; :
-noremap , <leader>
 
 " move char searching to - and _
 noremap - ;
@@ -347,6 +350,10 @@ nnoremap <leader><F6> :%s/\r$//<CR>
 " preserve visual selection when shifting
 vnoremap < <gv
 vnoremap > >gv
+
+nmap <leader>ev :e ~/.vim/vimrc<CR>
+nmap <leader>sv :so ~/.vim/vimrc<CR>
+
 
 " repeat one-off macro @q with ctrl-q, slightly quicker than @@
 "nnoremap <C-q> @q
