@@ -1,8 +1,13 @@
+let mapleader=','
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+let g:EasyMotion_leader_key = '<Leader>'
 
-set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
+set nocompatible                    " les vim enable features that breaks legacy vanilla vi emulation 
 syntax enable                       " syntax highlighting
+set t_Co=256	                    " enable 256 term color
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
 colorscheme kersk                   " sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
 "colorscheme candycode              " sets a vim color theme
@@ -146,8 +151,6 @@ set formatoptions-=ro
 
 " Command-T plugin
 let g:CommandTMaxHeight=15
-
-let g:EasyMotion_leader_key = ','
 
 " LustyExplorer
 " let g:LustyExplorerSuppressRubyWarning = 1
