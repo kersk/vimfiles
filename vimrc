@@ -220,6 +220,9 @@ nnoremap <leader>[ :FufDir<CR>
 nnoremap <leader>] :CommandT<CR>
 nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+
 
 " custom key bindings
 nnoremap <leader>i :call g:ToggleNuMode()<CR> 
@@ -250,17 +253,18 @@ noremap k gk
 " rebind join lines is rebound to Control-s
 noremap <C-s> <S-j>
 
-" disable Shift-K (man page lookup) and Shift-J 
-nmap <S-j> <C-d>
-vmap <S-j> <C-d>
-nmap <S-k> <C-u>
-vmap <S-k> <C-u>
-
 " disable Shift-Up and Shift-Down -- just move up and down 1 line
 nmap <S-Up> k
 vmap <S-Up> k
 nmap <S-Down> j
 vmap <S-Down> j
+
+" Bubble single lines
+nmap <S-k> ddkP
+nmap <S-j> ddp
+" Bubble multiple lines
+vmap <S-k> xkP`[V`]
+vmap <S-j> xp`[V`]
 
 " make enter insert new lines in normal mode
 nnoremap <CR> i<CR><Esc>
