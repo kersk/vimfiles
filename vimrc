@@ -1,3 +1,5 @@
+" pathogen support
+filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -7,6 +9,7 @@ set t_Co=256	                    " enable 256 term color
 set t_AB=^[[48;5;%dm                " enable 256 term color 
 set t_AF=^[[38;5;%dm                " enable 256 term color 
 set guifont=Consolas:h12			" best font!
+"set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
