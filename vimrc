@@ -1,13 +1,12 @@
 " pathogen support
 filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+runtime! autoload/pathogen.vim
+silent! call pathogen#helptags()
+silent! call pathogen#runtime_append_all_bundles()
 
-set nocompatible                    " les vim enable features that breaks legacy vanilla vi emulation 
+set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
+set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
-set t_Co=256	                    " enable 256 term color
-set t_AB=^[[48;5;%dm                " enable 256 term color 
-set t_AF=^[[38;5;%dm                " enable 256 term color 
 set guifont=Consolas:h12			" best font!
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
@@ -29,11 +28,13 @@ set softtabstop=4		            " sets tabs to 4 spaces, differently
 set shiftwidth=4                    " sets tabs to 4 spaces, differently.
 set virtualedit=all	                " allows cursor to go bravely where no cursor has gone before
 set mouse=a				            " enable mouse for everything
-set wmh=0                           " splits are minimized to 0 lines.
+set winminheight=0					" splits are minimized to 0 lines.
 set cursorline			            " highlight current line
 set nostartofline 		            " retain cursor column position
 set wrapscan						" incremental search file wrap around
-set wildmenu                        " ?
+set wildmenu                        " show pop-up menu instead of auto-complete
+"set wildmode=list:longest,full		" command <Tab> completion, list matches, then longest common part, then all.
+set showmatch						" highlight matching () [] {}, etc
 set nrformats=alpha,octal,hex       " allows visual-inc plugin to do hex/alpha
 set backspace=indent,eol,start      " makes backspace work like a normal app
 set scrolloff=3      	            " keep line # padding around cursor when scrolling up or down
@@ -41,6 +42,9 @@ set hidden							" keeps a buffer's undo history active while the file is not vi
 set nobackup						" disable backups
 set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
+set gdefault						" regex substitutions default with /g (global across line)
+set listchars=tab:^',trail:',eol:¬  " Highlight problematic whitespace
+set matchpairs+=<:>					" add % match pair for <>
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
 "set lines=54                       " non-fullscreen default window height
@@ -48,7 +52,17 @@ set formatoptions-=ro				" shut off auto comment extension to new lines
 "set foldmethod=indent				" indent based fold generation
 "set spell spelllang=en_us			" activate spell checking
 "set list							" makes whitespace chars visible
-"set listchars=tab:>-,trail:-		" filter to just tabs and trailing whitespace
+
+if has('statusline')
+	set laststatus=2
+	set statusline=[%<%t]\ 						" Filename
+	set statusline+=%w%h%m%r					" Options
+	set statusline+=%{fugitive#statusline()}	"  Git Hotness
+	set statusline+=\ [%{getcwd()}]          	" current dir
+	"set statusline+=\ [%{&ff}/%Y]            	" filetype
+	"set statusline+=\ [A=\%03.3b/H=\%02.2B] 	" ASCII / Hexadecimal value of char
+	"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  	" Right aligned file nav info
+endif
 
 if has("gui_running")				" gui-only settings
 	set guioptions-=m               " disables gui menu bar
@@ -158,7 +172,7 @@ endfunction
 let g:CommandTMaxHeight=15
 
 " LustyExplorer plugin
-" let g:LustyExplorerSuppressRubyWarning = 1
+let g:LustyExplorerSuppressRubyWarning = 1 " removes warning in terminal vim 
 
 " Gundo plugin
 let gundo_help = 0 " disable help text at top
@@ -178,7 +192,9 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 let OmniCpp_LocalSearchDecl = 1 " don't require special style of function opening braces
 
 " supertab plugin 
-let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabCrMapping = 0
 
 " nerdtree plugin
 "au VimEnter *  NERDTree " auto open nerd tree
@@ -194,7 +210,8 @@ function! YRRunAfterMaps()
 endfunction
 
 " plugin key bindings
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeFind<CR>
+nnoremap <leader>T :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
 nnoremap <bar> :Ack<space>
