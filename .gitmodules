@@ -71,3 +71,6 @@
 [submodule "bundle/delimitmate"]
 	path = bundle/delimitmate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/current-func-info"]
+	path = bundle/current-func-info
+	url = https://github.com/tyru/current-func-info.vim.git
