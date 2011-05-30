@@ -22,10 +22,6 @@
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 	igonore = dirty
-;[submodule "bundle/supertab"]
-	;path = bundle/supertab
-	;url = https://github.com/ervandew/supertab.git
-	;igonore = dirty
 [submodule "bundle/gitv"]
 	path = bundle/gitv
 	url = https://github.com/gregsexton/gitv.git
