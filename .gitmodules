@@ -10,10 +10,6 @@
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
 	igonore = dirty
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = https://github.com/sjl/syntastic.git
-	igonore = dirty
 [submodule "bundle/extradite"]
 	path = bundle/extradite
 	url = https://github.com/vim-scripts/extradite.vim.git
