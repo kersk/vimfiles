@@ -42,7 +42,6 @@
 	path = bundle/yankring
 	url = https://github.com/vim-scripts/YankRing.vim.git
 	igonore = dirty
-[submodule "bundle/visualstar"]
-	path = bundle/visualstar
-	url = https://github.com/thinca/vim-visualstar.git
-	igonore = dirty
+[submodule "bundle/visual-increment"]
+	path = bundle/visual-increment
+	url = https://github.com/vim-scripts/visual-increment.git
