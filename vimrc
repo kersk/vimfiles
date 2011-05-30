@@ -7,8 +7,8 @@ silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
-set guifont=Consolas:h12			" best font!
-"set guifont=Inconsolata-dz:h12		" 2nd best font!
+"set guifont=Consolas:h12			" best font!
+set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
@@ -262,11 +262,18 @@ nmap <S-Down> j
 vmap <S-Down> j
 
 " Bubble single lines
-nmap <S-k> ddkP
+nmap  ddkP
 nmap <S-j> ddp
 " Bubble multiple lines
 vmap <S-k> xkP`[V`]
 vmap <S-j> xp`[V`]
+
+" Bubble single lines
+nmap <S-k> [e
+nmap <S-j> ]e
+" Bubble multiple lines
+vmap <S-k> [egv
+vmap <S-j> ]egv
 
 " make enter insert new lines in normal mode
 nnoremap <CR> i<CR><Esc>
@@ -320,8 +327,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 " mappings to edit and source vimrc
-nmap <leader>ev :e ~/.vim/vimrc<CR>
-nmap <leader>sv :so ~/.vim/vimrc<CR>
+nmap <leader>v :sp $MYVIMRC<CR>
+" source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost vimrc source $MYVIMRC
+endif
 
 " changes behavior of the <Enter> key when the popup menu is visible to simply select the highlighted menu item, just as <C-Y> does.
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -381,3 +391,6 @@ nmap <leader>sv :so ~/.vim/vimrc<CR>
 " :%!<term_command> or :r!<term_command> ie :%!sort ... sorts entire file or " the visual selection, neat
 " @: repeats last :-mode command.
 " ctrl-o while in insert mode crops you back to normal mode for one command
+" ctrl-f while in commandline mode opens command window which allows editing
+" q/ gets all recent searches into cmd window, ctrl-c to quit
+" q: gets all recent command line usage into cmd window, ctrl-c to quit
