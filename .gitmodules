@@ -22,3 +22,11 @@
 	path = bundle/indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
 	igonore = dirty
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+	igonore = dirty
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+	igonore = dirty
