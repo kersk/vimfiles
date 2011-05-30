@@ -33,7 +33,6 @@ set nostartofline 		            " retain cursor column position
 set wrapscan						" incremental search file wrap around
 set wildmenu                        " show pop-up menu instead of auto-complete
 "set wildmode=list:longest,full		" command <Tab> completion, list matches, then longest common part, then all.
-set showmatch						" highlight matching () [] {}, etc
 set nrformats=alpha,octal,hex       " allows visual-inc plugin to do hex/alpha
 set backspace=indent,eol,start      " makes backspace work like a normal app
 set scrolloff=3      	            " keep line # padding around cursor when scrolling up or down
@@ -55,10 +54,10 @@ set matchpairs+=<:>					" add % match pair for <>
 
 if has('statusline')
 	set laststatus=2
-	set statusline=[%<%t]\ 						" Filename
-	set statusline+=%w%h%m%r					" Options
-	set statusline+=%{fugitive#statusline()}	"  Git Hotness
-	set statusline+=\ [%{getcwd()}]          	" current dir
+	"set statusline=[%<%t]\ 						" Filename
+	"set statusline+=%w%h%m%r					" Options
+	"set statusline+=%{fugitive#statusline()}	"  Git Hotness
+	"set statusline+=\ [%{getcwd()}]          	" current dir
 	"set statusline+=\ [%{&ff}/%Y]            	" filetype
 	"set statusline+=\ [A=\%03.3b/H=\%02.2B] 	" ASCII / Hexadecimal value of char
 	"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  	" Right aligned file nav info
@@ -151,6 +150,49 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
+" custom statusline
+hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
+hi Modified guibg=orange guifg=black ctermbg=lightred ctermfg=black
+
+function! MyStatusLine(mode)
+    let statusline=""
+    if a:mode == 'Enter'
+        let statusline.="%#StatColor#"
+    endif
+    let statusline.="\(%n\)\ %f\ "
+    if a:mode == 'Enter'
+        let statusline.="%*"
+    endif
+    let statusline.="%#Modified#%m"
+    if a:mode == 'Leave'
+        let statusline.="%*%r"
+    elseif a:mode == 'Enter'
+        let statusline.="%r%*"
+    endif
+    let statusline .= "\ (%l/%L,\ %c)\ %P%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]\ \ "
+    return statusline
+endfunction
+
+au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
+au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
+set statusline=%!MyStatusLine('Enter')
+
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi StatColor guibg=orange ctermbg=lightred
+  elseif a:mode == 'r'
+    hi StatColor guibg=#e454ba ctermbg=magenta
+  elseif a:mode == 'v'
+    hi StatColor guibg=#e454ba ctermbg=magenta
+  else
+    hi StatColor guibg=red ctermbg=red
+  endif
+endfunction 
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
+
+
 " set fold settings
 "augroup vimrc
 "au BufReadPre * setlocal foldmethod=indent
@@ -180,19 +222,19 @@ let gundo_preview_bottom = 1 " give preview window entire width of screen
 let gundo_close_on_revert = 1 " auto close on choosing version
 
 " OmniCppComplete plugin
-let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_SelectFirstItem = 2 " select item but don't auto insert
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-let OmniCpp_LocalSearchDecl = 1 " don't require special style of function opening braces
+"let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
+"let OmniCpp_GlobalScopeSearch = 1
+"let OmniCpp_ShowAccess = 1
+"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+"let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+"let OmniCpp_SelectFirstItem = 2 " select item but don't auto insert
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+"let OmniCpp_LocalSearchDecl = 1 " don't require special style of function opening braces
 
 " supertab plugin 
-let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 "let g:SuperTabCrMapping = 0
 
@@ -210,8 +252,8 @@ function! YRRunAfterMaps()
 endfunction
 
 " plugin key bindings
-nnoremap <leader>t :NERDTreeFind<CR>
-nnoremap <leader>T :NERDTreeToggle<CR>
+nnoremap <leader>T :NERDTreeFind<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
 nnoremap <bar> :Ack<space>
