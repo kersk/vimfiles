@@ -79,3 +79,6 @@
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+[submodule "bundle/gmcs"]
+	path = bundle/gmcs
+	url = https://github.com/vim-scripts/gmcs.vim.git
