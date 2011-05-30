@@ -74,3 +74,9 @@
 [submodule "bundle/current-func-info"]
 	path = bundle/current-func-info
 	url = https://github.com/tyru/current-func-info.vim.git
+[submodule "bundle/a"]
+	path = bundle/a
+	url = https://github.com/vim-scripts/a.vim.git
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
