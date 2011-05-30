@@ -13,7 +13,6 @@ colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
 "colorscheme candycode              " sets a vim color theme
-set ruler                           " shows cursor position coords
 set number                          " enables line number gutter
 set numberwidth=5		            " adjusts # of columns in the gutter
 set showcmd                         " shows in-progress command requesting a motion in the status bar
@@ -45,6 +44,7 @@ set formatoptions-=ro				" shut off auto comment extension to new lines
 set gdefault						" regex substitutions default with /g (global across line)
 set listchars=tab:^',trail:',eol:¬  " Highlight problematic whitespace
 set matchpairs+=<:>					" add % match pair for <>
+"set ruler                           " shows cursor position coords
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
 "set lines=54                       " non-fullscreen default window height
@@ -193,7 +193,7 @@ let OmniCpp_LocalSearchDecl = 1 " don't require special style of function openin
 
 " supertab plugin 
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 "let g:SuperTabCrMapping = 0
 
 " nerdtree plugin
@@ -220,8 +220,10 @@ nnoremap <leader>[ :FufDir<CR>
 nnoremap <leader>] :CommandT<CR>
 nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a :Tabularize /
+vmap <Leader>a :Tabularize /
+"nmap <Leader>a= :Tabularize /=<CR>
+"vmap <Leader>a= :Tabularize /=<CR>
 
 
 " custom key bindings
