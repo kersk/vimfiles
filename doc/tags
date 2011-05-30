@@ -10,10 +10,6 @@
 ,b	camelcasemotion.txt	/*,b*
 ,e	camelcasemotion.txt	/*,e*
 ,w	camelcasemotion.txt	/*,w*
-:Ack	ack.txt	/*:Ack*
-:AckAdd	ack.txt	/*:AckAdd*
-:AckFile	ack.txt	/*:AckFile*
-:AckFromSearch	ack.txt	/*:AckFromSearch*
 :CommandT	command-t.txt	/*:CommandT*
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
 :FufAddBookmark	fuf.txt	/*:FufAddBookmark*
@@ -42,8 +38,6 @@
 :FufTag	fuf.txt	/*:FufTag*
 :FufTagWithCursorWord	fuf.txt	/*:FufTagWithCursorWord*
 :FufTaggedFile	fuf.txt	/*:FufTaggedFile*
-:LAck	ack.txt	/*:LAck*
-:LAckAdd	ack.txt	/*:LAckAdd*
 :MatchDebug	matchit.txt	/*:MatchDebug*
 AN	alternate.txt	/*AN*
 AS	alternate.txt	/*AS*
@@ -75,9 +69,6 @@ ShowMarksToggle	showmarks.txt	/*ShowMarksToggle*
 [%	matchit.txt	/*[%*
 ]%	matchit.txt	/*]%*
 abc	fuf.txt	/*abc*
-ack	ack.txt	/*ack*
-ack-author	ack.txt	/*ack-author*
-ack.txt	ack.txt	/*ack.txt*
 alternate	alternate.txt	/*alternate*
 alternate-acknowledgments	alternate.txt	/*alternate-acknowledgments*
 alternate-commands	alternate.txt	/*alternate-commands*

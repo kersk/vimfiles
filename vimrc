@@ -256,7 +256,7 @@ nnoremap <leader>T :NERDTreeFind<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
-nnoremap <bar> :Ack<space>
+nnoremap <bar> :LAck<space>
 nnoremap <leader><leader> :FufLine<CR>
 nnoremap <leader>[ :FufDir<CR>
 nnoremap <leader>] :CommandT<CR>
@@ -436,3 +436,4 @@ endif
 " ctrl-f while in commandline mode opens command window which allows editing
 " q/ gets all recent searches into cmd window, ctrl-c to quit
 " q: gets all recent command line usage into cmd window, ctrl-c to quit
+" :verbose map <leader>t, etc can be used to check mappings
