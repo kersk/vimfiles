@@ -46,4 +46,7 @@
 	path = bundle/visual-increment
 	url = https://github.com/vim-scripts/visual-increment.git
 	igonore = dirty
-
+[submodule "bundle/visualstar"]
+	path = bundle/visualstar
+	url = https://github.com/thinca/vim-visualstar.git
+	igonore = dirty
