@@ -42,9 +42,9 @@ set hidden							" keeps a buffer's undo history active while the file is not vi
 set nobackup						" disable backups
 set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
-set gdefault						" regex substitutions default with /g (global across line)
 set listchars=tab:^',trail:',eol:¬  " Highlight problematic whitespace
 set matchpairs+=<:>					" add % match pair for <>
+"set gdefault						" regex substitutions default with /g (global across line)
 "set ruler                           " shows cursor position coords
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
@@ -84,7 +84,7 @@ if has('statusline')
 			let statusline.="%r%*"
 		endif
 		let statusline .="\ %{fugitive#statusline()}"
-		let statusline .="\ [%{getcwd()}]"
+		"let statusline .="\ [%{getcwd()}]"
 		let statusline .= "%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]"
 		let statusline .= "\ (%l/%L,\ %c)\ %P\ \ "
 		return statusline
