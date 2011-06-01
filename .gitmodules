@@ -78,3 +78,6 @@
 [submodule "bundle/gmcs"]
 	path = bundle/gmcs
 	url = https://github.com/vim-scripts/gmcs.vim.git
+[submodule "bundle/extradite"]
+	path = bundle/extradite
+	url = https://github.com/int3/vim-extradite.git
