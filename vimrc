@@ -55,7 +55,7 @@ set matchpairs+=<:>					" add % match pair for <>
 
 if has('statusline')
 	set laststatus=2
-	"set statusline=[%<%t]\ 						" Filename
+	"set statusline=[%<%t]\ 					" Filename
 	"set statusline+=%w%h%m%r					" Options
 	"set statusline+=%{fugitive#statusline()}	"  Git Hotness
 	"set statusline+=\ [%{getcwd()}]          	" current dir
@@ -82,7 +82,10 @@ if has('statusline')
 		elseif a:mode == 'Enter'
 			let statusline.="%r%*"
 		endif
-		let statusline .= "\ (%l/%L,\ %c)\ %P%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]\ \ "
+		let statusline .="\ %{fugitive#statusline()}"
+		let statusline .="\ [%{getcwd()}]"
+		let statusline .= "%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]"
+		let statusline .= "\ (%l/%L,\ %c)\ %P\ \ "
 		return statusline
 	endfunction
 
@@ -399,10 +402,11 @@ vnoremap > >gv
 
 " mappings to edit and source vimrc
 nmap <leader>v :sp $MYVIMRC<CR>
-" source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost vimrc source $MYVIMRC
-endif
+nmap <leader>s :so $MYVIMRC<CR>
+"" source the vimrc file after saving it
+"if has("autocmd")
+"  autocmd bufwritepost vimrc source $MYVIMRC
+"endif
 
 " changes behavior of the <Enter> key when the popup menu is visible to simply select the highlighted menu item, just as <C-Y> does.
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
