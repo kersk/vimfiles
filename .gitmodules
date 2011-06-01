@@ -67,3 +67,30 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = https://github.com/chrismetcalf/vim-yankring.git
+[submodule "bundle/csharp"]
+	path = bundle/csharp
+	url = https://github.com/vim-scripts/csharp.vim.git
+[submodule "bundle/cmdline-completion"]
+	path = bundle/cmdline-completion
+	url = https://github.com/vim-scripts/cmdline-completion.git
+[submodule "bundle/bufkill"]
+	path = bundle/bufkill
+	url = https://github.com/vim-scripts/bufkill.vim.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = https://github.com/vim-scripts/matchit.zip.git
+[submodule "bundle/camelcasemotion"]
+	path = bundle/camelcasemotion
+	url = https://github.com/bkad/CamelCaseMotion.git
+[submodule "bundle/indexedsearch"]
+	path = bundle/indexedsearch
+	url = https://github.com/vim-scripts/IndexedSearch.git
+[submodule "bundle/fuzzyfinder"]
+	path = bundle/fuzzyfinder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
+[submodule "bundle/lusty"]
+	path = bundle/lusty
+	url = https://github.com/sjbach/lusty.git
+[submodule "bundle.l9"]
+	path = bundle/l9
+	url = https://github.com/vim-scripts/L9.git

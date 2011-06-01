@@ -142,6 +142,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=func=ccomplete#CompleteCpp
+autocmd FileType cs set omnifunc=syntaxcomplete#Complete
 autocmd FileType cpp set formatoptions-=ro
 "set omnifunc=syntaxcomplete#Complete
 
