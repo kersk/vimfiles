@@ -7,8 +7,9 @@ silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
+set guifont=Consolas\ Bold:h12      " best font bold! 
 "set guifont=Consolas:h12			" best font!
-set guifont=Inconsolata-dz:h12		" 2nd best font!
+"set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
@@ -130,7 +131,7 @@ if has('win16') || has('win32') || has('win64')
 	imap <4-MiddleMouse> <Nop>
 else
 	if has("gui_running")				" gui-only settings
-		set	transparency=10             " makes background transparent
+		set	transparency=5              " makes background transparent
 		set fuoptions=maxvert,maxhorz   " fullscreen window resizing options (MacVim only?)
 		au GUIEnter * set fullscreen    " automatically enter fullscreen at startup
 	endif
