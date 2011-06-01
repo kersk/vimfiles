@@ -407,14 +407,12 @@ endif
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " c# mono unity compilation (mac)
-":compiler! gmcs
-":set mp=gmcs\ -recurse:*.cs\ -lib:/Applications/Unity/Unity.app/Contents/Frameworks/\ -lib:/Applications/Unity/Unity.app/Contents/Frameworks/Mono.framework/\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module
-":set autowrite
+:compiler! gmcs
+:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/\ -lib:/applications/unity/unity.app/contents/frameworks/mono.framework/\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -nowarn:0169\ -target:module
 
 " c# mono unity compilation (win)
 "compiler! gmcs
 "vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g
-"set autowrite
 
 " apple xcode integration
 " set the :make command to use Xcode to build
