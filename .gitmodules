@@ -91,6 +91,3 @@
 [submodule "bundle/lusty"]
 	path = bundle/lusty
 	url = https://github.com/sjbach/lusty.git
-[submodule "bundle.l9"]
-	path = bundle/l9
-	url = https://github.com/vim-scripts/L9.git
