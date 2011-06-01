@@ -10,9 +10,6 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = https://github.com/vim-scripts/YankRing.vim.git
-[submodule "bundle/visual-increment"]
-	path = bundle/visual-increment
-	url = https://github.com/vim-scripts/visual-increment.git
 [submodule "bundle/visualstar"]
 	path = bundle/visualstar
 	url = https://github.com/vim-scripts/visualstar.vim.git
