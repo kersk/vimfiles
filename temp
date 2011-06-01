@@ -3,3 +3,4 @@ vim-git
 gundo
 indent-guides
 surround
+syntastic
