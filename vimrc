@@ -7,8 +7,8 @@ silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
-"set guifont=Consolas\ Bold:h12      " best font bold! 
 set guifont=Consolas:h12			" best font!
+"set guifont=Consolas\ Bold:h12     " best font bold! 
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
@@ -21,9 +21,9 @@ set incsearch                       " searches as you type
 set hlsearch                        " highlight search results
 set ignorecase			            " case agnostic searches
 set smartcase			            " ... unless you start using uppercase
-"set autoindent                      " automatically indents
-"set smartindent                     " better than dumbindent
-"set cindent							" c-style aware indenting
+"set autoindent                     " automatically indents
+"set smartindent                    " better than dumbindent
+"set cindent						" c-style aware indenting
 set tabstop=4                       " sets tabs to 4 spaces
 set softtabstop=4		            " sets tabs to 4 spaces, differently
 set shiftwidth=4                    " sets tabs to 4 spaces, differently.
@@ -33,7 +33,7 @@ set winminheight=0					" splits are minimized to 0 lines.
 set cursorline			            " highlight current line
 set nostartofline 		            " retain cursor column position
 set wrapscan						" incremental search file wrap around
-set wildmenu                        " show pop-up menu instead of auto-complete
+"set wildmenu                       " show pop-up menu instead of auto-complete
 "set wildmode=list:longest,full		" command <Tab> completion, list matches, then longest common part, then all.
 set nrformats=alpha,octal,hex       " allows visual-inc plugin to do hex/alpha
 set backspace=indent,eol,start      " makes backspace work like a normal app
@@ -45,7 +45,6 @@ set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
 set listchars=tab:^',trail:',eol:¬  " Highlight problematic whitespace
 set matchpairs+=<:>					" add % match pair for <>
-"set gdefault						" regex substitutions default with /g (global across line)
 "set ruler                           " shows cursor position coords
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
@@ -54,6 +53,8 @@ set matchpairs+=<:>					" add % match pair for <>
 "set foldmethod=indent				" indent based fold generation
 "set spell spelllang=en_us			" activate spell checking
 "set list							" makes whitespace chars visible
+
+let $VIMHOME=expand('<sfile>:p:h')
 
 if has('statusline')
 	set laststatus=2
@@ -148,7 +149,9 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c set omnifunc=func=ccomplete#CompleteCpp
 autocmd FileType c set omnifunc=ccomplete#CompleteCpp
-autocmd FileType cs set omnifunc=syntaxcomplete#Complete
+autocmd FileType cpp set omnifunc=ccomplete#CompleteCpp
+autocmd FileType cs set omnifunc=ccomplete#CompleteCpp
+"autocmd FileType cs set omnifunc=syntaxcomplete#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -222,6 +225,7 @@ endfunction
 "map <C-F11> :silent !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR> :!cscope -b -i cscope.files -f cscope.out<CR> :cs kill -1<CR>:cs add cscope.out<CR>
 
 " neocomplcache plugin
+let g:neocomplcache_snippets_dir = "$VIMHOME/snippets" " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
 let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
 let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
@@ -236,28 +240,6 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><S-TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-e>" : "\<S-TAB>"
-" snippets expand key
-"imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
-""imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-e>"
-"smap  <TAB>  <RIGHT><Plug>(neocomplcache_snippets_jump)
-"inoremap <expr><C-e>     neocomplcache#complete_common_string()
-
-"imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-n>" : "\<tab>")
-"smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
-"inoremap <expr><c-e>     neocomplcache#complete_common_string()
-	
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <BS>: close popup and delete char.
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
 	let g:neocomplcache_omni_patterns = {}
@@ -268,7 +250,17 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.cs = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_enable_auto_select = 1
+	
+" neocomplcache key-mappings.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><CR>  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-y>  neocomplcache#cancel_popup()
 
 " Command-T plugin
 let g:CommandTMaxHeight=15
