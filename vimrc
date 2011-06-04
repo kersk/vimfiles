@@ -408,15 +408,10 @@ nmap <leader>s :so $MYVIMRC<CR>
 "  autocmd bufwritepost vimrc source $MYVIMRC
 "endif
 
-" changes behavior of the <Enter> key when the popup menu is visible to simply select the highlighted menu item, just as <C-Y> does.
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" c# mono unity compilation (mac)
 :compiler! gmcs
-:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/\ -lib:/applications/unity/unity.app/contents/frameworks/mono.framework/\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -nowarn:0169\ -target:module
-
+" c# mono unity compilation (mac)
+:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module
 " c# mono unity compilation (win)
-"compiler! gmcs
 "vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g
 
 " apple xcode integration
