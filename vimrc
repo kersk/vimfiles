@@ -181,6 +181,13 @@ function! g:ToggleNuMode()
 	endif 
 endfunc 
 
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
 function! GetBufferList()
   redir =>buflist
   silent! ls
@@ -288,13 +295,13 @@ function! YRRunAfterMaps()
 endfunction
 
 " plugin key bindings
-nnoremap <leader>T :NERDTreeFind<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>_ :NERDTreeFind<CR>
+nnoremap <leader>- :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
-nnoremap <bar> :LAck<space>
+nnoremap <bar> :Ack<space>
 nnoremap <leader><leader> :FufLine<CR>
-nnoremap <leader>[ :FufDir<CR>
+nnoremap <leader>[ :FufDirWithFullCwd<CR>
 nnoremap <leader>] :CommandT<CR>
 nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
@@ -393,6 +400,10 @@ noremap ] <Esc>
 " preserve visual selection when shifting
 vnoremap < <gv
 vnoremap > >gv
+
+" visual mode search
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
 
 " mappings to edit and source vimrc
 nmap <leader>v :sp $MYVIMRC<CR>
