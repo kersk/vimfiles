@@ -11,6 +11,7 @@ set guifont=Consolas:h12			" best font!
 "set guifont=Consolas\ Bold:h12     " best font bold! 
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
+"colorscheme default				" sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
 "colorscheme candycode              " sets a vim color theme
@@ -334,13 +335,6 @@ nmap <S-Up> k
 vmap <S-Up> k
 nmap <S-Down> j
 vmap <S-Down> j
-
-" Bubble single lines
-nmap  ddkP
-nmap <S-j> ddp
-" Bubble multiple lines
-vmap <S-k> xkP`[V`]
-vmap <S-j> xp`[V`]
 
 " Bubble single lines
 nmap <S-k> [e
