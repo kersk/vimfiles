@@ -7,8 +7,8 @@ silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
-set guifont=Consolas\ Bold:h12      " best font bold! 
-"set guifont=Consolas:h12			" best font!
+"set guifont=Consolas\ Bold:h12      " best font bold! 
+set guifont=Consolas:h12			" best font!
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme desert					" sets a vim color theme
@@ -21,8 +21,9 @@ set incsearch                       " searches as you type
 set hlsearch                        " highlight search results
 set ignorecase			            " case agnostic searches
 set smartcase			            " ... unless you start using uppercase
-set autoindent                      " automatically indents
-set smartindent                     " better than dumbindent
+"set autoindent                      " automatically indents
+"set smartindent                     " better than dumbindent
+"set cindent							" c-style aware indenting
 set tabstop=4                       " sets tabs to 4 spaces
 set softtabstop=4		            " sets tabs to 4 spaces, differently
 set shiftwidth=4                    " sets tabs to 4 spaces, differently.
@@ -145,9 +146,14 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=func=ccomplete#CompleteCpp
+"autocmd FileType c set omnifunc=func=ccomplete#CompleteCpp
+autocmd FileType c set omnifunc=ccomplete#CompleteCpp
 autocmd FileType cs set omnifunc=syntaxcomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType cpp set formatoptions-=ro
+autocmd FileType cs set formatoptions-=ro
 "set omnifunc=syntaxcomplete#Complete
 
 " set custom filetypes for .frag and .vert glsl shaders to use c's filetype
@@ -155,7 +161,7 @@ au BufNewFile,BufRead *.frag set filetype=cpp
 au BufNewFile,BufRead *.vert set filetype=cpp
 
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 " menuone opens popup even if only 1 match, longest only uses longest common text
 set completeopt=menuone,longest ",preview    " disabled preview
@@ -221,9 +227,8 @@ let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
 let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
 let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
 
-let g:neocomplcache_auto_completion_start_length = 3
-let g:neocomplcache_manual_completion_start_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_manual_completion_start_length = 1
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -231,6 +236,8 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-e>" : "\<S-TAB>"
 " snippets expand key
 "imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
 ""imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-e>"
@@ -246,12 +253,10 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" <BS>: close popup and delete char.
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -262,6 +267,8 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.cs = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_enable_auto_select = 1
 
 " Command-T plugin
 let g:CommandTMaxHeight=15
