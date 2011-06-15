@@ -148,11 +148,12 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType c set omnifunc=func=ccomplete#CompleteCpp
-autocmd FileType c set omnifunc=ccomplete#CompleteCpp
-autocmd FileType cpp set omnifunc=ccomplete#CompleteCpp
-autocmd FileType cs set omnifunc=ccomplete#CompleteCpp
-"autocmd FileType cs set omnifunc=syntaxcomplete#Complete
+autocmd FileType c set omnifunc=syntaxcomplete#Complete
+autocmd FileType cpp set omnifunc=syntaxcomplete#Complete
+autocmd FileType cs set omnifunc=syntaxcomplete#Complete
+"autocmd FileType c set omnifunc=ccomplete#CompleteCpp
+"autocmd FileType cpp set omnifunc=ccomplete#CompleteCpp
+"autocmd FileType cs set omnifunc=ccomplete#CompleteCpp
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -289,7 +290,7 @@ let NERDTreeIgnore = ['\.vim$', '\~$', '\.svn$', '\.git$', '.DS_Store', 'cscope\
 
 " yank ring plugin
 let g:yankring_persist = 0
-let g:yankring_min_element_length = 2
+let g:yankring_min_element_length = 1
 function! YRRunAfterMaps()
 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
@@ -349,6 +350,9 @@ nmap <S-j> ]e
 " Bubble multiple lines
 vmap <S-k> [egv
 vmap <S-j> ]egv
+
+" map , to mirror leader
+map , <Leader>
 
 " make enter insert new lines in normal mode
 nnoremap <CR> i<CR><Esc>
@@ -415,7 +419,7 @@ nmap <leader>s :so $MYVIMRC<CR>
 
 :compiler! gmcs
 " c# mono unity compilation (mac)
-:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module
+:set mp=/Applications/Unity/Unity.app/Contents/Frameworks/Mono/bin/gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module
 " c# mono unity compilation (win)
 "vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g
 
