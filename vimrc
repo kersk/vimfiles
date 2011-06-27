@@ -415,9 +415,9 @@ nmap <leader>s :so $MYVIMRC<CR>
 
 :compiler! gmcs
 " c# mono unity compilation (mac)
-:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module
+:set mp=gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module\ --parse
 " c# mono unity compilation (win)
-"vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g
+"vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g\ --parse
 
 " apple xcode integration
 " set the :make command to use Xcode to build
