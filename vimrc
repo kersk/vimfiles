@@ -7,8 +7,8 @@ silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
-"set guifont=Consolas:h12			" best font!
-set guifont=Consolas\ Bold:h12     " best font bold! 
+set guifont=Consolas:h12			" best font!
+"set guifont=Consolas\ Bold:h12     " best font bold! 
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme default				" sets a vim color theme

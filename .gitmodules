@@ -94,3 +94,6 @@
 [submodule "bundle/vimerl"]
 	path = bundle/vimerl
 	url = https://github.com/oscarh/vimerl.git
+[submodule "bundle/vitunes"]
+	path = bundle/vitunes
+	url = https://github.com/ryanflannery/vitunes.git
