@@ -300,7 +300,7 @@ nnoremap <leader>_ :NERDTreeFind<CR>
 nnoremap <leader>- :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
-nnoremap <bar> :Ack<space>
+nnoremap <bar> :Ack!<space>
 nnoremap <leader><leader> :FufLine<CR>
 nnoremap <leader>[ :FufDirWithFullCwd<CR>
 nnoremap <leader>] :CommandT<CR>
@@ -381,17 +381,17 @@ noremap <a-j> <c-w>1_
 noremap <a-l> <c-w><bar>
 noremap <a-h> <c-w>1<bar>
 
-" bind arrowkeys to switch active window buffer 
-map <down> <c-w>j
-map <up> <c-w>k
-map <right> <c-w>l
-map <left> <c-w>h
+" bind ctrl-arrowkeys to switch active window buffer 
+map <c-down> <c-w>j
+map <c-up> <c-w>k
+map <c-right> <c-w>l
+map <c-left> <c-w>h
 
 " bind ctrl-arrowkeys to resize the active window buffer
-map <c-left> <c-w><
-map <c-right> <c-w>>
-map <c-down> <c-w>-
-map <c-up> <c-w>+
+"map <c-left> <c-w><
+"map <c-right> <c-w>>
+"map <c-down> <c-w>-
+"map <c-up> <c-w>+
 
 " rebind [[,[],][,]] to be more useful
 noremap [] ][
