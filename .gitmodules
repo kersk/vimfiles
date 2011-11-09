@@ -91,6 +91,3 @@
 [submodule "bundle/l9"]
 	path = bundle/l9
 	url = https://github.com/vim-scripts/L9.git
-[submodule "bundle/vimerl"]
-	path = bundle/vimerl
-	url = https://github.com/oscarh/vimerl.git
