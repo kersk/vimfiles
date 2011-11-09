@@ -44,9 +44,9 @@ set hidden							" keeps a buffer's undo history active while the file is not vi
 set nobackup						" disable backups
 set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
-set listchars=tab:^',trail:',eol:¬  " Highlight problematic whitespace
+set listchars=tab:^',trail:'        " Highlight problematic whitespace
 set matchpairs+=<:>					" add % match pair for <>
-"set ruler                           " shows cursor position coords
+"set ruler                          " shows cursor position coords
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
 "set lines=54                       " non-fullscreen default window height
@@ -417,9 +417,9 @@ nmap <leader>s :so $MYVIMRC<CR>
 "  autocmd bufwritepost vimrc source $MYVIMRC
 "endif
 
-:compiler! gmcs
+":compiler! gmcs
 " c# mono unity compilation (mac)
-:set mp=/Applications/Unity/Unity.app/Contents/Frameworks/Mono/bin/gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module\ --parse
+":set mp=/Applications/Unity/Unity.app/Contents/Frameworks/Mono/bin/gmcs\ -recurse:*.cs\ -lib:/applications/unity/unity.app/contents/frameworks/Managed\ -lib:/applications/unity/unity.app/contents/frameworks/mono/lib/mono/unity\ -r:unityengine\ -r:unityeditor\ -r:boo.lang\ -r:unityscript\ -nowarn:0169\ -target:module\ --parse
 " c# mono unity compilation (win)
 "vset mp=gmcs\ -recurse:\"*.cs\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/\"\ -lib:\"C:/Program\ Files\ (x86)/Unity/Editor/Data/Frameworks/Mono.framework/\"\ -r:UnityEngine\ -r:UnityEditor\ -r:Boo.Lang\ -nowarn:0169\ -target:module\ -g\ --parse
 
