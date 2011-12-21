@@ -103,3 +103,12 @@
 [submodule "bundle/simple-pairs"]
 	path = bundle/simple-pairs
 	url = https://github.com/vim-scripts/simple-pairs.git
+[submodule "bundle/vim-erlang-skeletons"]
+	path = bundle/vim-erlang-skeletons
+	url = https://github.com/aerosol/vim-erlang-skeletons.git
+[submodule "vim-shell"]
+	path = vim-shell
+	url = https://github.com/xolox/vim-shell.git
+[submodule "vim-easytags"]
+	path = vim-easytags
+	url = https://github.com/xolox/vim-easytags.git
