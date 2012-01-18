@@ -106,6 +106,3 @@
 [submodule "bundle/vim-erlang-skeletons"]
 	path = bundle/vim-erlang-skeletons
 	url = https://github.com/aerosol/vim-erlang-skeletons.git
-[submodule "vim-easytags"]
-	path = vim-easytags
-	url = https://github.com/xolox/vim-easytags.git
