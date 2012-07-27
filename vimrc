@@ -46,6 +46,7 @@ set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
 set listchars=tab:^',trail:'        " Highlight problematic whitespace
 set matchpairs+=<:>					" add % match pair for <>
+set noea							" prevent resizing/repositioning entire window when closing buffers -- 'no equal always'
 "set ruler                          " shows cursor position coords
 "set sidescrolloff=10               " keep column # padding around cursor when scrolling sideways
 "set columns=140                    " non-fullscreen default window width
@@ -54,6 +55,7 @@ set matchpairs+=<:>					" add % match pair for <>
 "set foldmethod=indent				" indent based fold generation
 "set spell spelllang=en_us			" activate spell checking
 "set list							" makes whitespace chars visible
+		
 
 let $VIMHOME=expand('<sfile>:p:h')
 
@@ -86,7 +88,7 @@ if has('statusline')
 		elseif a:mode == 'Enter'
 			let statusline.="%r%*"
 		endif
-		let statusline .="\ %{fugitive#statusline()}"
+		"let statusline .="\ %{fugitive#statusline()}"
 		"let statusline .="\ [%{getcwd()}]"
 		let statusline .= "%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]"
 		let statusline .= "\ (%l/%L,\ %c)\ %P\ \ "
@@ -159,11 +161,14 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType cpp set formatoptions-=ro
 autocmd FileType cs set formatoptions-=ro
-"set omnifunc=syntaxcomplete#Complete
+"set omnifunc= syntaxcomplete#Complete
 
 " set custom filetypes for .frag and .vert glsl shaders to use c's filetype
 au BufNewFile,BufRead *.frag set filetype=cpp
 au BufNewFile,BufRead *.vert set filetype=cpp
+au BufNewFile,BufRead *.shader set filetype=cpp
+au BufNewFile,BufRead *.rml set filetype=html.lua
+au BufNewFile,BufRead *.rcss set filetype=css
 
 " automatically open and close the popup menu / preview window
 "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -425,7 +430,7 @@ nmap <leader>s :so $MYVIMRC<CR>
 
 " apple xcode integration
 " set the :make command to use Xcode to build
-" set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"Build\"\ -e\ \"end\ tell\"
+ set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"Run\"\ -e\ \"end\ tell\"
 "set makeprg=xcodebuild\ -project\ ../kore_SDL.xcodeproj\ -activeconfiguration
 "set makeprg=xcodebuild\ -project\ ../kore_GLFW.xcodeproj\ -activeconfiguration
 "set makeprg=cd\ /Users/kersk/Dev/kore_GLFW/;xcodebuild\ -project\ kore_GLFW.xcodeproj\ -activeconfiguration
@@ -443,6 +448,11 @@ nmap <leader>s :so $MYVIMRC<CR>
 "        silent execute '!osascript -e "tell application \"Xcode\"" -e "Debug" -e "end tell"'
 "endfunction
 "command! -complete=command XcodeDebug call XcodeDebug()
+
+function! XcodeRun()
+		silent execute '!osascript -e "tell application \"Xcode\"" -e "Clean" -e "end tell"'
+endfunction
+command! -complete=command XcodeRun call XcodeRun()
 
 " generated stl_tags with...
 "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ cpp_src 
