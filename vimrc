@@ -179,14 +179,6 @@ set completeopt=menuone,longest ",preview    " disabled preview
 " automatically save all files before running the make command
 autocmd QuickFixCmdPre make wa 
 
-function! g:ToggleNuMode() 
-	if(&rnu == 1) 
-		set nu 
-	else 
-		set rnu 
-	endif 
-endfunc 
-
 function! s:VSetSearch()
   let temp = @@
   norm! gvy
@@ -315,7 +307,7 @@ nmap <Leader>a :Tabularize /
 vmap <Leader>a :Tabularize /
 
 " custom key bindings
-nnoremap <leader>i :call g:ToggleNuMode()<CR> 
+nnoremap <leader>i :NumbersToggle<CR>
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>' :call ToggleList("Quickfix List", 'c')<CR>
 
