@@ -283,7 +283,7 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " indent guides plugin
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 3
+let g:indent_guides_color_change_percent = 5
 " Command-T plugin
 let g:CommandTMaxHeight=15
 
