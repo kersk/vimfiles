@@ -88,7 +88,7 @@ if has('statusline')
 		elseif a:mode == 'Enter'
 			let statusline.="%r%*"
 		endif
-		"let statusline .="\ %{fugitive#statusline()}"
+		let statusline .="\ %{fugitive#statusline()}"
 		"let statusline .="\ [%{getcwd()}]"
 		let statusline .= "%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]"
 		let statusline .= "\ (%l/%L,\ %c)\ %P\ \ "
@@ -231,14 +231,15 @@ endfunction
 "map <C-F11> :silent !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR> :!cscope -b -i cscope.files -f cscope.out<CR> :cs kill -1<CR>:cs add cscope.out<CR>
 
 " neocomplcache plugin
-let g:neocomplcache_snippets_dir = "$VIMHOME/snippets" " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
 let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
 let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
 let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
 
-let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_manual_completion_start_length = 1
+let g:neocomplcache_auto_completion_start_length = 0
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_enable_auto_select = 0 " Disable due to bug with tab complete, skips first (desired) selection on tab 
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -250,24 +251,39 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 if !exists('g:neocomplcache_omni_patterns')
 	let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.cs = '\%(\.\|->\)\h\w*'
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.cs = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 	
 " neocomplcache key-mappings.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><S-TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-p>" : "\<S-TAB>"
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><CR>  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+inoremap <expr><silent> <CR> <SID>my_cr_function()
+function! s:my_cr_function()
+  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplcache#start_manual_complete()
+function! s:check_back_space()"{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-y>  neocomplcache#cancel_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()     
 
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" indent guides plugin
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 3
 " Command-T plugin
 let g:CommandTMaxHeight=15
 
@@ -391,12 +407,12 @@ map <c-left> <c-w>h
 "map <c-up> <c-w>+
 
 " rebind [[,[],][,]] to be more useful
-noremap [] ][
-noremap ][ [[
-noremap [[ :set nowrapscan<CR>?[{}]<CR>:noh<CR>:set wrapscan<CR>
-noremap ]] :set nowrapscan<CR>/[{}]<CR>:noh<CR>:set wrapscan<CR>
-noremap [ <Esc>
-noremap ] <Esc>
+"noremap [] ][
+"noremap ][ [[
+"noremap [[ :set nowrapscan<CR>?[{}]<CR>:noh<CR>:set wrapscan<CR>
+"noremap ]] :set nowrapscan<CR>/[{}]<CR>:noh<CR>:set wrapscan<CR>
+"noremap [ <Esc>
+"noremap ] <Esc>
 
 " preserve visual selection when shifting
 vnoremap < <gv
