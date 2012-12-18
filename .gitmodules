@@ -94,9 +94,6 @@
 [submodule "bundle/greplace.vim"]
 	path = bundle/greplace.vim
 	url = https://github.com/vim-scripts/greplace.vim.git
-[submodule "bundle/dbext.vim"]
-	path = bundle/dbext.vim
-	url = https://github.com/cagatayyuksel/dbext.vim.git
 [submodule "bundle/simple-pairs"]
 	path = bundle/simple-pairs
 	url = https://github.com/vim-scripts/simple-pairs.git
