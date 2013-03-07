@@ -44,7 +44,8 @@ set hidden							" keeps a buffer's undo history active while the file is not vi
 set nobackup						" disable backups
 set noswapfile						" disable swap files
 set formatoptions-=ro				" shut off auto comment extension to new lines
-set listchars=tab:^',trail:'        " Highlight problematic whitespace
+set listchars=tab:'`,trail:~        " Highlight problematic whitespace
+set list							" makes whitespace chars visible
 set matchpairs+=<:>					" add % match pair for <>
 set noea							" prevent resizing/repositioning entire window when closing buffers -- 'no equal always'
 "set ruler                          " shows cursor position coords
@@ -54,7 +55,6 @@ set noea							" prevent resizing/repositioning entire window when closing buffe
 "set autochdir                      " automatically change working dir to the current file's dir
 "set foldmethod=indent				" indent based fold generation
 "set spell spelllang=en_us			" activate spell checking
-"set list							" makes whitespace chars visible
 		
 
 let $VIMHOME=expand('<sfile>:p:h')
@@ -138,7 +138,7 @@ else
 	if has("gui_running")				" gui-only settings
 		set	transparency=5              " makes background transparent
 		set fuoptions=maxvert,maxhorz   " fullscreen window resizing options (MacVim only?)
-		au GUIEnter * set fullscreen    " automatically enter fullscreen at startup
+		" au GUIEnter * set fullscreen    " automatically enter fullscreen at startup
 	endif
 endif
 
@@ -316,7 +316,7 @@ nnoremap <leader>o :TagbarToggle<CR>
 nnoremap <bar> :Ack!<space>
 nnoremap <leader><leader> :FufLine<CR>
 nnoremap <leader>[ :FufDirWithFullCwd<CR>
-nnoremap <leader>] :CommandT<CR>
+nnoremap <leader>] :CtrlP<CR>
 nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
 nmap <Leader>a :Tabularize /
@@ -331,7 +331,8 @@ nmap <silent> <leader>' :call ToggleList("Quickfix List", 'c')<CR>
 map <F5> :cd %:p:h<CR>
 
 " normalize line-endings
-nnoremap <leader><F6> :%s/\r$//<CR>
+map <F6> :e ++ff=dos<CR>:set ff=unix<CR>:w<CR>
+noremap <leader><F6> :%s/\r$//<CR>
 
 " bind both ; and : to EX 
 map ; :
@@ -438,7 +439,8 @@ nmap <leader>s :so $MYVIMRC<CR>
 
 " apple xcode integration
 " set the :make command to use Xcode to build
- set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"Run\"\ -e\ \"end\ tell\"
+set makeprg=xbuild\ /nologo\ /v:q
+"set makeprg=osascript\ -e\ \"tell\ application\ \\\"Xcode\\\"\"\ -e\ \"Run\"\ -e\ \"end\ tell\"
 "set makeprg=xcodebuild\ -project\ ../kore_SDL.xcodeproj\ -activeconfiguration
 "set makeprg=xcodebuild\ -project\ ../kore_GLFW.xcodeproj\ -activeconfiguration
 "set makeprg=cd\ /Users/kersk/Dev/kore_GLFW/;xcodebuild\ -project\ kore_GLFW.xcodeproj\ -activeconfiguration
