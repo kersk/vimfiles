@@ -4,17 +4,18 @@ runtime! autoload/pathogen.vim
 silent! call pathogen#helptags()
 silent! call pathogen#runtime_append_all_bundles()
 
-set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation 
+set nocompatible                    " lets vim enable features that breaks legacy vanilla vi emulation
 set background=dark					" assume dark background
 syntax enable                       " syntax highlighting
 set guifont=Consolas:h12			" best font!
-"set guifont=Consolas\ Bold:h12     " best font bold! 
+"set guifont=Consolas\ Bold:h12     " best font bold!
 "set guifont=Inconsolata-dz:h12		" 2nd best font!
 colorscheme kersk                   " sets a vim color theme
 "colorscheme default				" sets a vim color theme
 "colorscheme desert					" sets a vim color theme
 "colorscheme wombat256              " sets a vim color theme
 "colorscheme candycode              " sets a vim color theme
+set autoread						" auto reload externally modified files
 set number                          " enables line number gutter
 set numberwidth=5		            " adjusts # of columns in the gutter
 set showcmd                         " shows in-progress command requesting a motion in the status bar
@@ -55,7 +56,7 @@ set noea							" prevent resizing/repositioning entire window when closing buffe
 "set autochdir                      " automatically change working dir to the current file's dir
 "set foldmethod=indent				" indent based fold generation
 "set spell spelllang=en_us			" activate spell checking
-		
+
 
 let $VIMHOME=expand('<sfile>:p:h')
 
@@ -109,7 +110,7 @@ if has('statusline')
 		else
 			hi StatColor guibg=red ctermbg=red
 		endif
-	endfunction 
+	endfunction
 
 	au InsertEnter * call InsertStatuslineColor(v:insertmode)
 	au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
@@ -152,7 +153,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=syntaxcomplete#Complete
 autocmd FileType cpp set omnifunc=syntaxcomplete#Complete
-autocmd FileType cs set omnifunc=syntaxcomplete#Complete
+"autocmd FileType cs set omnifunc=syntaxcomplete#Complete
 "autocmd FileType c set omnifunc=ccomplete#CompleteCpp
 "autocmd FileType cpp set omnifunc=ccomplete#CompleteCpp
 "autocmd FileType cs set omnifunc=ccomplete#CompleteCpp
@@ -177,7 +178,7 @@ au BufNewFile,BufRead *.rcss set filetype=css
 set completeopt=menuone,longest ",preview    " disabled preview
 
 " automatically save all files before running the make command
-autocmd QuickFixCmdPre make wa 
+autocmd QuickFixCmdPre make wa
 
 function! s:VSetSearch()
   let temp = @@
@@ -230,56 +231,57 @@ endfunction
 " config cscopes
 "map <C-F11> :silent !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR> :!cscope -b -i cscope.files -f cscope.out<CR> :cs kill -1<CR>:cs add cscope.out<CR>
 
+let g:SuperTabClosePreviewOnPopupClose = 1
 " neocomplcache plugin
-let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
-let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
-let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
-let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
+"let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
+"let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
+"let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
+"let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
 
-let g:neocomplcache_auto_completion_start_length = 0
-let g:neocomplcache_manual_completion_start_length = 0
-let g:neocomplcache_enable_fuzzy_completion = 1
-let g:neocomplcache_enable_auto_select = 0 " Disable due to bug with tab complete, skips first (desired) selection on tab 
+"let g:neocomplcache_auto_completion_start_length = 0
+"let g:neocomplcache_manual_completion_start_length = 0
+"let g:neocomplcache_enable_fuzzy_completion = 1
+"let g:neocomplcache_enable_auto_select = 0 " Disable due to bug with tab complete, skips first (desired) selection on tab
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"if !exists('g:neocomplcache_keyword_patterns')
+"    let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
-endif
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_omni_patterns.cs = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-	
+"" Enable heavy omni completion.
+"if !exists('g:neocomplcache_omni_patterns')
+"    let g:neocomplcache_omni_patterns = {}
+"endif
+""autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"let g:neocomplcache_omni_patterns.cs = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
 " neocomplcache key-mappings.
-inoremap <expr><silent> <CR> <SID>my_cr_function()
-function! s:my_cr_function()
-  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ neocomplcache#start_manual_complete()
-function! s:check_back_space()"{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()     
+"inoremap <expr><silent> <CR> <SID>my_cr_function()
+"function! s:my_cr_function()
+"  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ neocomplcache#start_manual_complete()
+"function! s:check_back_space()"{{{
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction"}}}
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " <S-TAB>: completion back.
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " indent guides plugin
 let g:indent_guides_enable_on_vim_startup = 1
@@ -288,7 +290,7 @@ let g:indent_guides_color_change_percent = 5
 let g:CommandTMaxHeight=15
 
 " LustyExplorer plugin
-let g:LustyExplorerSuppressRubyWarning = 1 " removes warning in terminal vim 
+let g:LustyExplorerSuppressRubyWarning = 1 " removes warning in terminal vim
 
 " Gundo plugin
 let gundo_help = 0 " disable help text at top
@@ -327,14 +329,19 @@ nnoremap <leader>i :NumbersToggle<CR>
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>' :call ToggleList("Quickfix List", 'c')<CR>
 
-" set path to current file 
+" set path to current file
 map <F5> :cd %:p:h<CR>
+map <F12> :call GotoDefinition()<CR>
+map gd :call GotoDefinition()<CR>
+map <leader>d :call GotoDefinition()<CR>
+map <leader>s :call FindImplementations()<CR>
+map <leader>r :call FindUsages()<CR>
 
-" normalize line-endings
-map <F6> :e ++ff=dos<CR>:set ff=unix<CR>:w<CR>
+" normalize line-endings and strip trailing whitespace
+map <F6> :e ++ff=dos<CR>:set ff=unix<CR>:%s/\s\+$//<CR>:w<CR>
 noremap <leader><F6> :%s/\r$//<CR>
 
-" bind both ; and : to EX 
+" bind both ; and : to EX
 map ; :
 
 " move char searching to - and _
@@ -383,7 +390,7 @@ noremap <Esc> :noh<CR><Esc>
 noremap ' `
 "noremap ` '
 
-" bind control-jklh to switch active window buffer 
+" bind control-jklh to switch active window buffer
 noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
@@ -395,7 +402,7 @@ noremap <a-j> <c-w>1_
 noremap <a-l> <c-w><bar>
 noremap <a-h> <c-w>1<bar>
 
-" bind ctrl-arrowkeys to switch active window buffer 
+" bind ctrl-arrowkeys to switch active window buffer
 map <c-down> <c-w>j
 map <c-up> <c-w>k
 map <c-right> <c-w>l
@@ -465,12 +472,12 @@ endfunction
 command! -complete=command XcodeRun call XcodeRun()
 
 " generated stl_tags with...
-"ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ cpp_src 
+"ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ cpp_src
 "ctags ^^^ /usr/include/GL/ && mv tags gl # for OpenGL
 "ctags ^^^ /usr/include/SDL/ && mv tags sdl # for SDL
 
 " makes ctags recurse up directory structure if tags not found?
-"set tags=./tags;/ 
+"set tags=./tags;/
 
 " notes
 " completion mode reference
