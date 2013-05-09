@@ -231,6 +231,11 @@ endfunction
 " config cscopes
 "map <C-F11> :silent !find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR> :!cscope -b -i cscope.files -f cscope.out<CR> :cs kill -1<CR>:cs add cscope.out<CR>
 
+let g:ctrlp_max_files = 0
+let g:ctrlp_by_filename = 1
+let g:ctrlp_max_height = 15
+let g:ctrlp_switch_buffer = 0
+
 let g:SuperTabClosePreviewOnPopupClose = 1
 " neocomplcache plugin
 "let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
@@ -315,7 +320,7 @@ nnoremap <leader>_ :NERDTreeFind<CR>
 nnoremap <leader>- :NERDTreeToggle<CR>
 nnoremap <leader>p :YRShow<CR>
 nnoremap <leader>o :TagbarToggle<CR>
-nnoremap <bar> :Ack!<space>
+nnoremap <bar> :Ag!<space>
 nnoremap <leader><leader> :FufLine<CR>
 nnoremap <leader>[ :FufDirWithFullCwd<CR>
 nnoremap <leader>] :CtrlP<CR>
