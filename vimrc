@@ -326,8 +326,8 @@ nnoremap <leader>[ :FufDirWithFullCwd<CR>
 nnoremap <leader>] :CtrlP<CR>
 nnoremap <leader>= :GundoToggle<CR>
 nnoremap <F4> :CommandTFlush<CR>
-nmap <Leader>a :Tabularize /
-vmap <Leader>a :Tabularize /
+"nmap <Leader>a :Tabularize /
+"vmap <Leader>a :Tabularize /
 
 " custom key bindings
 nnoremap <leader>i :NumbersToggle<CR>
@@ -338,9 +338,13 @@ nmap <silent> <leader>' :call ToggleList("Quickfix List", 'c')<CR>
 map <F5> :cd %:p:h<CR>
 map <F12> :call GotoDefinition()<CR>
 map gd :call GotoDefinition()<CR>
-map <leader>d :call GotoDefinition()<CR>
 map <leader>s :call FindImplementations()<CR>
 map <leader>r :call FindUsages()<CR>
+
+" perforce p4
+map <leader>e :!p4 edit %<CR>
+map <leader>a :!p4 add %<CR>
+map <leader>d :!p4 diff %<CR>
 
 " normalize line-endings and strip trailing whitespace
 map <F6> :e ++ff=dos<CR>:set ff=unix<CR>:%s/\s\+$//<CR>:w<CR>
