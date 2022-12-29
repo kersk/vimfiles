@@ -309,3 +309,7 @@ nmap <leader>s :so $MYVIMRC<CR>
 " ctrl-f while in commandline mode opens command window which allows editing
 " q/ gets all recent searches into cmd window, ctrl-c to quit
 " q: gets all recent command line usage into cmd window, ctrl-c to quit
+"
+" fix mixed newlines
+" :set ff=unix
+" :%s/\r//g
